@@ -1,3 +1,7 @@
+/** Create test data on localstorage */
+if (!localStorage.getItem('product')) {
+	createProduct();
+}
 var myIndex = 0;
 carousel();
 
@@ -157,6 +161,8 @@ function showMenu(){
 
 	
 /*PRODUCT*/
+function createProduct(){
+	if(localStorage.getItem('product')===null){
 		var productArray = [
 			{productId:10042, brand:'adidas',    img:'images/product/10042.jpg', name:'Stan Smith Green', price:2500000},
 			{productId:10041, brand:'nike',    img:'images/product/10041.jpg', name:'Air max 1 Just do it', price:5700000},
@@ -202,10 +208,14 @@ function showMenu(){
 			{productId:10001, brand:'adidas',    img:'images/product/10001.jpg', name:'Adidas Prophere Undefeated', price:6599000},
 			{productId:10000, brand:'adidas',    img:'images/product/10000.jpg', name:'Adidas Yeezy 350 v2 ‘ Oreo ‘ Rep', price:15000000},	
 		];
+		localStorage.setItem('product',JSON.stringify(productArray));
+	}
+}
 function showProduct(){
 	var url = document.location.href;
 	var temp = url.split("?");
-	var s='';
+	var sp='';
+	var productArray = JSON.parse(localStorage.getItem('product'));
 	if(temp[1]=='' || temp[1]==undefined || temp[1].search('all')==0){
 		if(temp[1]=='' || temp[1]==undefined){
 			temp = 'all&0';
@@ -217,7 +227,7 @@ function showProduct(){
 		var vitri = temp2[1];
 		var sotrang=0,dem=0;
 		for(var i=vitri;i<productArray.length;i++){
-			s+='<div class="card">'+
+			sp+='<div class="card">'+
 						'<img src="'+productArray[i].img+'">'+
 						'<p>' + productArray[i].name + '</p>'+
 						'<p> Price: ' + currency(productArray[i].price) +'</p>' +
@@ -247,7 +257,7 @@ function showProduct(){
 				arrtempt.push(productArray[i]);
 		}
 		for(var i=vitri;i<arrtempt.length;i++){
-			s+='<div class="card">'+
+			sp+='<div class="card">'+
 						'<img src="'+arrtempt[i].img+'">'+
 						'<p>' + arrtempt[i].name + '</p>'+
 						'<p> Price: ' + currency(arrtempt[i].price) +'</p>' +
@@ -265,7 +275,7 @@ function showProduct(){
 		}
 		document.getElementById('page').innerHTML=lienket;
 	}
-	document.getElementById('product').innerHTML=s;
+	document.getElementById('product').innerHTML=sp;
 }
 function showProductInfo(productid){
 	document.getElementById('productInfo').style.display = 'block';
