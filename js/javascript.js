@@ -157,8 +157,6 @@ function showMenu(){
 
 	
 /*PRODUCT*/
-function createProduct(){
-	if(localStorage.getItem('product')===null){
 		var productArray = [
 			{productId:10042, brand:'adidas',    img:'images/product/10042.jpg', name:'Stan Smith Green', price:2500000},
 			{productId:10041, brand:'nike',    img:'images/product/10041.jpg', name:'Air max 1 Just do it', price:5700000},
@@ -204,9 +202,6 @@ function createProduct(){
 			{productId:10001, brand:'adidas',    img:'images/product/10001.jpg', name:'Adidas Prophere Undefeated', price:6599000},
 			{productId:10000, brand:'adidas',    img:'images/product/10000.jpg', name:'Adidas Yeezy 350 v2 ‘ Oreo ‘ Rep', price:15000000},	
 		];
-		localStorage.setItem('product',JSON.stringify(productArray));
-	}
-}
 function showProduct(){
 	var url = document.location.href;
 	var temp = url.split("?");
