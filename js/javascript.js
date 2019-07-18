@@ -206,7 +206,6 @@ function showProduct(){
 	var url = document.location.href;
 	var temp = url.split("?");
 	var s='';
-	var productArray = JSON.parse(localStorage.getItem('product'));
 	if(temp[1]=='' || temp[1]==undefined || temp[1].search('all')==0){
 		if(temp[1]=='' || temp[1]==undefined){
 			temp = 'all&0';
